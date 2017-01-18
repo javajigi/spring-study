@@ -3,7 +3,6 @@ package slipp.helpers;
 import java.io.IOException;
 import java.util.Map;
 
-import javax.annotation.PostConstruct;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -28,7 +27,6 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import com.github.jknack.handlebars.Helper;
 import com.github.jknack.handlebars.Options;
 import com.github.jknack.handlebars.Options.Buffer;
-import com.github.jknack.handlebars.springmvc.HandlebarsViewResolver;
 
 @Component
 public class SpringSecurityHelper implements Helper<Object> {
@@ -38,14 +36,6 @@ public class SpringSecurityHelper implements Helper<Object> {
 
 	@Autowired
 	private ApplicationContext appContext;
-
-	@Autowired
-	private HandlebarsViewResolver handlebarsViewResolver;
-	
-	@PostConstruct
-	public void registerHelper() {
-		handlebarsViewResolver.registerHelper(NAME, appContext.getBean(SpringSecurityHelper.class));
-	}
 
 	@Override
 	public Object apply(final Object context, final Options options) throws IOException {

@@ -1,3 +1,10 @@
 Hello World!<br/>
 {{code "my.nick"}}<br/>
 {{code "my.name" default="jae sung"}}
+
+{{#authorize "hasRole('ROLE_USER')"}}
+This have role
+{{/authorize}}
+{{#authorize "isAnonymous()"}}
+now anonymous
+{{/authorize}}

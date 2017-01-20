@@ -10,8 +10,8 @@ import com.github.jknack.handlebars.springmvc.HandlebarsViewResolver;
 
 import slipp.helpers.SpringSecurityHelper;
 
-@Configuration
-@ConditionalOnClass(HandlebarsViewResolver.class)
+ @Configuration
+ @ConditionalOnClass(HandlebarsViewResolver.class)
 public class WebMvcConfig {
 	@Configuration
 	@ConditionalOnClass(SpringSecurityHelper.class)

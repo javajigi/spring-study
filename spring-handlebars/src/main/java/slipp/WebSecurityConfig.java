@@ -28,8 +28,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		http
+		  .csrf().disable();
+		
 		http.authorizeRequests()
-			.antMatchers("/hello").access("hasRole('ROLE_ADMIN')")
 			.anyRequest().permitAll()
 			.and()
 				.formLogin()
@@ -41,9 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.logoutSuccessUrl("/login?logout")
 			.and()
 				.exceptionHandling()
-				.accessDeniedPage("/403")
-			.and()
-				.csrf();
+				.accessDeniedPage("/403");
 	}
 
 	@Bean(name = "passwordEncoder")

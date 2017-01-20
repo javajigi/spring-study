@@ -4,8 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 public class HomeController {
@@ -19,11 +17,5 @@ public class HomeController {
 	@GetMapping("/main")
 	public String inheritance() {
 		return "main";
-	}
-	
-	@PostMapping("/users")
-	public String users(@RequestBody Person person) {
-		log.debug("person : {}", person);
-		return "redirect:/";
 	}
 }

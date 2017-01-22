@@ -65,6 +65,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>my-handlebars</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

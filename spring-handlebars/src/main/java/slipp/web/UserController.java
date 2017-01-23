@@ -24,13 +24,13 @@ public class UserController {
 	public String users(@Valid @RequestBody User user, BindingResult result, Model model) {
 		log.debug("user : {}", user);
 		
-		List<ObjectError> errors = result.getAllErrors();
-		for (ObjectError error : errors) {
-			FieldError fieldError = (FieldError)error;
-			log.debug("field : {}, codes : {}", fieldError.getField(), fieldError.getCodes());
-			error.getCodes();
-		}
-		model.addAttribute("errors", errors);
+//		List<ObjectError> errors = result.getAllErrors();
+//		for (ObjectError error : errors) {
+//			FieldError fieldError = (FieldError)error;
+//			log.debug("field : {}, codes : {}", fieldError.getField(), fieldError.getCodes());
+//			error.getCodes();
+//		}
+//		model.addAttribute("errors", errors);
 		return "errors";
 	}
 }

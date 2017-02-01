@@ -1,3 +1,20 @@
-{{#block "header"}}<h1>Title</h1>{{/block}}
-{{#block "content"}}{{/block}}
-{{#block "footer" }}<span>Powered by Handlebars.java</span>{{/block}}
+<!DOCTYPE html>
+<html>
+<head>
+{{#block "header"}}
+<link href="/css/app.css" rel="stylesheet" type="text/css">
+<title>Spring Security Example - ProgrammingFree</title>
+{{/block}}
+</head>
+<body class="security-app">
+	{{#block "nav"}}
+	<div class="details">
+		<h2><a href="/">Spring Security - JDBC Authentication</a></h2>
+		<a href="http://www.programming-free.com/2016/01/spring-security-spring-data-jpa.html" class="button green small">Tutorial</a> 
+		<a href="https://github.com/priyadb/SpringSecurityJdbcApp/archive/master.zip"
+			class="button red small">Download</a>
+	</div>
+	{{/block}}
+	{{#block "content"}}{{/block}}
+</body>
+</html>

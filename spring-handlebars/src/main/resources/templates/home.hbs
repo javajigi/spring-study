@@ -1,10 +1,17 @@
-Hello World!<br/>
-{{code "my.nick"}}<br/>
-{{code "my.name" default="jae sung"}}
+{{#partial "content" }}
+<div class="lc-block">
+		<h1>Welcome!</h1>
+		<div class="alert-normal">
+			Click <a href="/hello">here</a> to see a greeting.
+			{{#authorize "hasRole('ROLE_USER')"}}
+			This is login user!!
+			{{/authorize}}
+			{{#authorize "isAnonymous()"}}
+			now anonymous
+			{{/authorize}}
+		</div>
+	</div>
+{{/partial}}
 
-{{#authorize "hasRole('ROLE_USER')"}}
-This have role
-{{/authorize}}
-{{#authorize "isAnonymous()"}}
-now anonymous
-{{/authorize}}
+{{> base}}
+

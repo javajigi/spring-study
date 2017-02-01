@@ -13,8 +13,10 @@ public class CustomUserDetails extends User implements UserDetails {
 
 	private static final long serialVersionUID = 1L;
 	private List<String> userRoles;
+	private User user;
 
 	public CustomUserDetails(User user, List<String> userRoles) {
+		this.user = user;
 		this.userRoles = userRoles;
 	}
 
@@ -46,7 +48,12 @@ public class CustomUserDetails extends User implements UserDetails {
 
 	@Override
 	public String getUsername() {
-		return super.getUserName();
+		return user.getUserName();
+	}
+	
+	@Override
+	public String getPassword() {
+		return user.getPassword();
 	}
 
 }

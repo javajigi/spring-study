@@ -24,7 +24,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailsService).passwordEncoder(passwordencoder());
+		auth.userDetailsService(userDetailsService); //.passwordEncoder(passwordencoder());
 	}
 
 	@Override
@@ -33,9 +33,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		  .csrf().disable();
 		
 		http.authorizeRequests()
-			.antMatchers(HttpMethod.GET, "/b/**").authenticated()
-			.antMatchers("/boards/**").access("hasRole('ROLE_USER')")
-			.anyRequest().permitAll()
+			.antMatchers("/css/**").permitAll();
+		
+		http.authorizeRequests()
+				.antMatchers(HttpMethod.GET, "/hello").access("hasRole('ROLE_USER')")
+				.antMatchers("/boards/**").authenticated()
+				.anyRequest().permitAll()
 			.and()
 				.formLogin()
 				.loginPage("/login")
@@ -49,8 +52,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.accessDeniedPage("/403");
 	}
 
-	@Bean(name = "passwordEncoder")
-	public PasswordEncoder passwordencoder() {
-		return new BCryptPasswordEncoder();
-	}
+//	@Bean(name = "passwordEncoder")
+//	public PasswordEncoder passwordencoder() {
+//		return new BCryptPasswordEncoder();
+//	}
 }

@@ -40,7 +40,6 @@ public class SpringSecurityHelper implements Helper<Object> {
 	@Override
 	public Object apply(final Object context, final Options options) throws IOException {
 		log.debug("context : {}", context);
-
 		Buffer buffer = options.buffer();
 		if (authorizeUsingAccessExpression(context.toString())) {
 			buffer.append(options.fn());

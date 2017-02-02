@@ -1,5 +1,12 @@
 <div>Hello World!</div>
 
+url : {{url "/questions"}}
+
+before : {{springMacroRequestContext.contextPath}}
+{{#springMacroRequestContext}}
+	request context : {{contextPath}}
+{{/springMacroRequestContext}}
+
 {{mylog this "user"}}
 
 This is errors before :

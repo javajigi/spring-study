@@ -31,4 +31,10 @@ public class HomeControllerTest {
 		ResponseEntity<String> result = template.getForEntity("/main", String.class);
 		log.debug("body : {}", result.getBody());	
 	}
+	
+	@Test
+	public void dateTypeConversion() throws Exception {
+		ResponseEntity<String> result = template.getForEntity("/date?date=2017-02-03&dateTime=2017-02-03T02:50:12.208", String.class);
+		log.debug("body : {}", result.getBody());
+	}
 }

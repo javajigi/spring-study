@@ -1,7 +1,5 @@
 package slipp.web;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -35,6 +33,12 @@ public class HomeControllerTest {
 	@Test
 	public void dateTypeConversion() throws Exception {
 		ResponseEntity<String> result = template.getForEntity("/date?date=2017-02-03&dateTime=2017-02-03T02:50:12.208", String.class);
+		log.debug("body : {}", result.getBody());
+	}
+	
+	@Test
+	public void handlebars() throws Exception {
+		ResponseEntity<String> result = template.getForEntity("/handlebars", String.class);
 		log.debug("body : {}", result.getBody());
 	}
 }

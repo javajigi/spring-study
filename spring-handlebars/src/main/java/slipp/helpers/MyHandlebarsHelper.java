@@ -32,7 +32,8 @@ public class MyHandlebarsHelper {
 	public CharSequence url(final String url, final Options options) throws IOException {
 		log.debug("url : {}", url);
 		RequestContext requestContext = (RequestContext)options.get(AbstractTemplateView.SPRING_MACRO_REQUEST_CONTEXT_ATTRIBUTE);
-	    return requestContext.getContextPath() + url;
+	    Object[] params = options.params;
+		return requestContext.getContextPath() + String.format(url, params);
 	}
 	
 	protected Locale currentLocale() {

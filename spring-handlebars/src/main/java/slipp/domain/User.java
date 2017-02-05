@@ -15,9 +15,9 @@ import org.hibernate.validator.constraints.Email;
 @Entity
 @Table(name = "users")
 public class User implements Serializable {
-
 	private static final long serialVersionUID = 1L;
-
+	public static final GuestUser GUEST_USER = new GuestUser();
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "userid")
@@ -95,6 +95,17 @@ public class User implements Serializable {
 
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+	
+	public boolean isGuestUser() {
+		return false;
+	}
+	
+	private static class GuestUser extends User {
+		@Override
+		public boolean isGuestUser() {
+			return true;
+		}
 	}
 
 	@Override

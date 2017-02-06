@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
 public class LoginRequiredAdvice {
-	private static final Logger log = LoggerFactory.getLogger(LoginRequiredAdvice.class);
-	
-	@ExceptionHandler(LoginRequiredException.class)
+    private static final Logger log = LoggerFactory.getLogger(LoginRequiredAdvice.class);
+
+    @ExceptionHandler(LoginRequiredException.class)
     public String handleConflict() {
-		log.debug("LoginRequiredException is happened!");
-		return "redirect:/user/login";
+        log.debug("LoginRequiredException is happened!");
+        return "redirect:/user/login";
     }
 }

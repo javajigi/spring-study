@@ -10,32 +10,31 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 import slipp.domain.User;
 
 public class LoginUserHandlerMethodArgumentResolver implements HandlerMethodArgumentResolver {
+    @Override
+    public boolean supportsParameter(MethodParameter parameter) {
+        return parameter.hasParameterAnnotation(LoginUser.class);
+    }
 
-	@Override
-	public boolean supportsParameter(MethodParameter parameter) {
-		return parameter.hasParameterAnnotation(LoginUser.class);
-	}
+    @Override
+    public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer,
+            NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
+        Object userObject = webRequest.getAttribute("sessionedUser", WebRequest.SCOPE_SESSION);
+        User user = getUser(userObject);
+        if (!user.isGuestUser()) {
+            return user;
+        }
 
-	@Override
-	public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer,
-			NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
-		Object userObject = webRequest.getAttribute("sessionedUser", WebRequest.SCOPE_SESSION);
-		User user = getUser(userObject);
-		if (!user.isGuestUser()) {
-			return user;
-		}
-		
-		LoginUser loginUser = parameter.getParameterAnnotation(LoginUser.class);
-		if (loginUser.required()) {
-			throw new LoginRequiredException("You're required Login!");
-		}
-		return user;
-	}
+        LoginUser loginUser = parameter.getParameterAnnotation(LoginUser.class);
+        if (loginUser.required()) {
+            throw new LoginRequiredException("You're required Login!");
+        }
+        return user;
+    }
 
-	private User getUser(Object user) {
-		if (user == null) {
-			return User.GUEST_USER;
-		}
-		return (User)user;
-	}
+    private User getUser(Object user) {
+        if (user == null) {
+            return User.GUEST_USER;
+        }
+        return (User) user;
+    }
 }

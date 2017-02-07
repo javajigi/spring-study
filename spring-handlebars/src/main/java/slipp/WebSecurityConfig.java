@@ -63,8 +63,7 @@ public abstract class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         
         @Override
         void configureCsrf(HttpSecurity http) throws Exception {
-            log.info("disable csrf local, production profile");
-            http.csrf().disable();
+            log.info("csrf local, production profile");
         }
 
         @Override

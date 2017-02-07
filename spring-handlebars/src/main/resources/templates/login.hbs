@@ -1,6 +1,6 @@
 {{#partial "content" }}
 	<form action="/login" method="post">
-		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+		<input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}" />
 		<div class="lc-block">
 			<div>
 				<input type="text" class="style-4" name="username"

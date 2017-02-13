@@ -97,6 +97,10 @@ public class User implements Serializable {
 		this.userName = userName;
 	}
 	
+	public boolean matchPassword(String password) {
+	    return this.password.equals(password);
+	}
+	
 	public boolean isGuestUser() {
 		return false;
 	}

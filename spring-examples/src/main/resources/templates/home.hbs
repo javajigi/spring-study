@@ -13,5 +13,15 @@
 	</div>
 {{/partial}}
 
+{{#partial "template"}}
+	<script id="invoice-template" type="text/javascript" >
+	{{precompile "precompiles/client"}}
+	
+	var template = Handlebars.templates['precompiles/client'];
+	var result = template(JSON.parse('{"name": "javajigi"}'));
+	console.log("result : ", result);
+	</script>
+{{/partial}}
+
 {{> base}}
 

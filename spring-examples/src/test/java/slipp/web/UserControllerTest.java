@@ -20,7 +20,7 @@ public class UserControllerTest extends AbstractIntegrationTest {
 	@Test
 	public void create() {
         String userId = RandomStringUtils.randomAlphanumeric(10).toUpperCase();
-        HttpEntity<MultiValueMap<String, String>> request = HtmlFormDataBuilder
+        HttpEntity<MultiValueMap<String, Object>> request = HtmlFormDataBuilder
 			.urlEncodedForm()
 			.addParameter("userId",  userId + "@slipp.net")
 			.addParameter("userName", "Jae Sung")

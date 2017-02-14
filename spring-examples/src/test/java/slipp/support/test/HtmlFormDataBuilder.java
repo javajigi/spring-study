@@ -8,25 +8,31 @@ import org.springframework.util.MultiValueMap;
 
 public class HtmlFormDataBuilder {
 	private HttpHeaders headers;
-	private MultiValueMap<String, String> params;
+	private MultiValueMap<String, Object> params;
 	
 	private HtmlFormDataBuilder(HttpHeaders headers) {
 		this.headers = headers;
-		this.params = new LinkedMultiValueMap<String, String>();
+		this.params = new LinkedMultiValueMap<>();
 	}
 	
-	public HtmlFormDataBuilder addParameter(String key, String value) {
+	public HtmlFormDataBuilder addParameter(String key, Object value) {
 		this.params.add(key, value);
 		return this;
 	}
 	
-	public HttpEntity<MultiValueMap<String, String>> build() {
-		return new HttpEntity<MultiValueMap<String, String>>(params, headers);
+	public HttpEntity<MultiValueMap<String, Object>> build() {
+		return new HttpEntity<MultiValueMap<String, Object>>(params, headers);
 	}
 	
 	public static HtmlFormDataBuilder urlEncodedForm() {
 		HttpHeaders headers = new HttpHeaders();
     	headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+    	return new HtmlFormDataBuilder(headers);
+	}
+	
+	public static HtmlFormDataBuilder multipartFormData() {
+		HttpHeaders headers = new HttpHeaders();
+    	headers.setContentType(MediaType.MULTIPART_FORM_DATA);
     	return new HtmlFormDataBuilder(headers);
 	}
 }

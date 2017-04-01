@@ -1,0 +1,18 @@
+version: '3'
+services:
+  nginx:
+    depends_on:
+      - my-slipp
+    build: ./nginx
+    links:
+      - my-slipp
+    ports:
+      - "80:80"
+  my-slipp:
+    depends_on:
+       - redis
+    image: my-spring-session:1.0.0
+    links:
+      - redis:redis
+  redis:
+    image: redis:alpine

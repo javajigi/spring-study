@@ -1,18 +1,32 @@
-version: '3'
+version: '2'
 services:
-  nginx:
-    depends_on:
-      - my-slipp
-    build: ./nginx
-    links:
-      - my-slipp
+  nginx-proxy:
+    image: jwilder/nginx-proxy
     ports:
       - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
   my-slipp:
+    image: my-spring-session:1.0.0
+    restart: always
+    ports:
+      - "8080"
+    environment:
+      - VIRTUAL_HOST=localhost
+      - VIRTUAL_PORT=8080
+  my-slipp-blue:
     depends_on:
        - redis
-    image: my-spring-session:1.0.0
+    links:
+    - redis:redis
+    extends:
+      service: my-slipp
+  my-slipp-green:
+    depends_on:
+       - redis
     links:
       - redis:redis
+    extends:
+      service: my-slipp
   redis:
     image: redis:alpine

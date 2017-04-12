@@ -12,5 +12,4 @@ docker-compose -p $PROJECT_NAME up -d my-slipp-blue
 
 sleep 5
 
-docker-compose -p $PROJECT_NAME -f docker-compose-proxy.yml up -d my-slipp-green
-
+docker-compose -p $PROJECT_NAME -f docker-compose.yml up -d my-slipp-green

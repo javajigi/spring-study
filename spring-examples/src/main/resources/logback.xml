@@ -9,6 +9,8 @@
 	
 	<logger name="slipp" level="DEBUG" />
 	
+	<logger name="examples.event" level="DEBUG" />
+	
 	<root level="INFO">
 		<appender-ref ref="STDOUT" />
 	</root>

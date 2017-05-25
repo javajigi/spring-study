@@ -7,7 +7,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 
+import de.codecentric.boot.admin.config.EnableAdminServer;
+
 @SpringBootApplication
+@EnableAdminServer
 public class MyHandlebarsApplication {
 
 	public static void main(String[] args) {
